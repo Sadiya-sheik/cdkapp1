@@ -8,8 +8,8 @@ export class Cdkapp1Stack extends cdk.Stack {
     super(scope, id, props);
 
     //Dynamodb table definition
-    const table = new dynamodb.Table(this, "Hello", {
-      partitionKey: { name: "name", type: dynamodb.AttributeType.STRING },
+    const table = new dynamodb.Table(this, "Order_details", {
+      partitionKey: { name: "Order_id", type: dynamodb.AttributeType.STRING },
     });
 
     // lambda function
@@ -26,7 +26,7 @@ export class Cdkapp1Stack extends cdk.Stack {
     table.grantReadWriteData(dynamoLambda);
 
     // create the API Gateway with one method and path
-    const api = new apigw.RestApi(this, "hello-api");
+    const api = new apigw.RestApi(this, "my-api");
 
     api.root
       .resourceForPath("app1")
